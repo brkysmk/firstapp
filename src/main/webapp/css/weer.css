@@ -1,0 +1,33 @@
+body {
+	background-color: #cecbbe;
+}
+
+label {
+	width:200px;
+	float:left;
+}
+
+h2 {
+	background-color: #b2ae99;
+	color: white;
+	line-height: 50px;
+	padding: 0 10px;
+}
+
+table {
+	background-color: #b2ae99;
+}
+
+th {
+	width:400px;
+}
+
+.hover{
+  cursor: pointer;
+}
+
+.hover:hover{
+  font-weight: bold;
+  color: #ffffff;
+}
+
