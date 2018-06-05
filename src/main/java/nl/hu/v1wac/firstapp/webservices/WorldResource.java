@@ -25,7 +25,6 @@ public class WorldResource {
 	@GET
 	@Produces("application/json")
 	public String getCountries() {
-		System.out.println("hallo1");
 		WorldService service = ServiceProvider.getWorldService();
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 
@@ -60,7 +59,6 @@ public class WorldResource {
 		if (world == null) {
 			throw new WebApplicationException("No such order!");
 		}
-
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 
 		JsonObjectBuilder job = Json.createObjectBuilder();

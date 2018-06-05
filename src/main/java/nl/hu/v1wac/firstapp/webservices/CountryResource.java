@@ -23,7 +23,6 @@ public class CountryResource {
 	@GET
 	@Produces("application/json")
 	public Response getCountry(@PathParam("countrycode") String code) {
-		System.out.println("hallo2");
 		Country country = service.getCountryByCode(code);
 
 		if (country == null) {
