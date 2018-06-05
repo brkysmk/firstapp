@@ -184,7 +184,7 @@ function wijzigFunc() {
     console.log("wijzig functie test " + this.id);
     fetch("restservices/countries/" + this.id)
         .then(response => response.json())
-.then(function (myJson) {
+        .then(function (myJson) {
         document.getElementById("wijzigGegevens").innerHTML = '<input name="name" type="text" value="' + myJson.name + '">LAND<br><br>';
         document.getElementById("wijzigGegevens").innerHTML += '<input name="capital" type="text" value="' + myJson.capital + '">CAPITAL<br><br>';
         document.getElementById("wijzigGegevens").innerHTML += '<input name="region" type="text" value="' + myJson.region + '">REGION<br><br>';
@@ -198,6 +198,7 @@ function wijzigFunc() {
 
 function addCountryFunc() {
     modal.style.display = "block";
+    document.getElementById("wijzigGegevens").innerHTML = '';
     document.getElementById("wijzigGegevens").innerHTML += '<input id="countrycode" name="countrycode" type="text" value="">CODE<br><br>';
     document.getElementById("wijzigGegevens").innerHTML += '<input name="iso3" type="text" value="" >ISO3<br><br>';
     document.getElementById("wijzigGegevens").innerHTML += '<input name="name" type="text" value="" >NAME<br><br>';

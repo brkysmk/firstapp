@@ -9,9 +9,13 @@ label {
 
 h2 {
 	background-color: #b2ae99;
-	color: white;
+	color: black;
 	line-height: 50px;
 	padding: 0 10px;
+}
+
+.adding {
+	text-align: center;
 }
 
 table {
@@ -20,6 +24,7 @@ table {
 
 th {
 	width:400px;
+	text-align: left;
 }
 
 .hover{
@@ -77,6 +82,7 @@ div {
 
 /* Modal Content */
 .modal-content {
+	text-align: center;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
