@@ -52,7 +52,6 @@ public class WorldResource {
 	@Path("{id}")
 	@Produces("Application/json")
 	public String getCountryInfo(@PathParam("id") String id) {
-		System.out.println("hallooo1");
 		WorldService service = ServiceProvider.getWorldService();
 		Country world = service.getCountryByCode(id);
 
