@@ -16,7 +16,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-//@Path("/countries/{countrycode}")
+@Path("/countries/{countrycode}")
 public class CountryResource {
 	private WorldService service = ServiceProvider.getWorldService();
 

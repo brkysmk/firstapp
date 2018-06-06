@@ -103,7 +103,7 @@ function timeConverter(UNIX_timestamp){
 function loadCountries(){
     fetch("restservices/countries")
         .then(response => response.json())
-.then(function (myJson) {
+        .then(function (myJson) {
         for (const country of myJson){
 
             var row = document.createElement("tr");
@@ -161,11 +161,12 @@ function deleteFunc() {
 
     fetch("restservices/countries/" + id, {method: 'DELETE', headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")}} )
         .then(function (response) {
+        	console.log("test: ", response);
             if (response.ok)
-                console.log("Country deleted")
+                console.log("Country deleted");
             else if (response.status == 404)
-                console.log("Country not found")
-            else console.log("Cannot delete country")
+                console.log("Country not found");
+            else console.log("Cannot delete country");
         })
 }
 
@@ -176,15 +177,16 @@ function putHandler() {
 
     fetch("restservices/countries/" + id, { method: 'PUT', body: encData, headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")}} )
         .then(response => response.json())
-        .then(function (myJson) { console.log(myJson); })
+        .then(function (myJson) { 
+        	console.log(myJson);
+        })
 };
 
 function wijzigFunc() {
     modal.style.display = "block";
-    console.log("wijzig functie test " + this.id);
     fetch("restservices/countries/" + this.id)
-        .then(response => response.json())
-        .then(function (myJson) {
+    .then(response => response.json())
+    .then(function (myJson) {
         document.getElementById("wijzigGegevens").innerHTML = '<input name="name" type="text" value="' + myJson.name + '">LAND<br><br>';
         document.getElementById("wijzigGegevens").innerHTML += '<input name="capital" type="text" value="' + myJson.capital + '">CAPITAL<br><br>';
         document.getElementById("wijzigGegevens").innerHTML += '<input name="region" type="text" value="' + myJson.region + '">REGION<br><br>';
@@ -213,7 +215,6 @@ function addCountryFunc() {
 
     document.getElementById("wijzigGegevens").innerHTML += '<input id="post" type="submit" value="Verzenden"><br><br>';
     document.querySelector("#post").addEventListener("click", addFunc);
-
 }
 
 
@@ -223,8 +224,10 @@ function addFunc() {
     var encData = new URLSearchParams(formData.entries());
 
     fetch("restservices/countries", { method: 'POST', body: encData, headers: {'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")}} )
-        .then(response => response.json())
-.then(function (myJson) { console.log(myJson); });
+    .then(response => response.json())
+	.then(function (myJson) { 
+		console.log(myJson); 
+	});
 }
 
 var login = document.querySelector("#logIn");
@@ -239,7 +242,6 @@ function addLogin() {
 }
 
 function loginButton(event) {
-	console.log("Stap 1");
     var formData = new FormData(document.querySelector("#wijzigGegevens"));
     var encData = new URLSearchParams(formData.entries());
     
@@ -249,9 +251,16 @@ function loginButton(event) {
     			return response.json();
     		else throw "wrong username/password";
     	})
-    	.then(myJson => window.sessionStorage.setItem("myJWT", myJson.JWT))
-    	.catch(error => console.log(error));
-	
+    	.then(function(myJson) {
+    		//console.log("logged in!");
+    		closeModal();
+    		alert("You're now logged in!");
+    		window.sessionStorage.setItem("myJWT", myJson.JWT)
+    	})
+    	.catch(function(error) {
+    		alert("Wrong username/password!");
+    		//console.log(error)
+    	});
 }
 
 initPage();
@@ -267,13 +276,17 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
+	closeModal();
+}
+
+function closeModal() {
+	modal.style.display = "none";
 }
 
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+    	closeModal();
     }
 }
