@@ -89,17 +89,16 @@ public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDa
 
 	@Override
 	public List<Country> find10LargestPopulations() {
-		return selectCountry("SELECT code, iso3, name, capital,continent, region, surfacearea, population, governmentform, latitude, longitude FROM country");
+		return selectCountry("SELECT code, iso3, name, capital,continent, region, surfacearea, population, governmentform, latitude, longitude FROM country ORDER BY population DESC");
 	}
 
 	@Override
 	public List<Country> find10LargestSurfaces() {
-		return selectCountry("SELECT code, iso3, name, capital,continent, region, surfacearea, population, governmentform, latitude, longitude FROM country");
+		return selectCountry("SELECT code, iso3, name, capital,continent, region, surfacearea, population, governmentform, latitude, longitude FROM country ORDER BY surfacearea DESC");
 	}
 
 	@Override
 	public boolean update(Country country) throws SQLException {
-		System.out.println("test1");
 		System.out.println(country.getName());
 		boolean resultaat = false;
 
